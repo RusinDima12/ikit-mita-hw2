@@ -8,8 +8,8 @@ namespace ClassLibrary1
 {
     public class CarPassport
     {
-        public Driver Owner;
-        private readonly Car _car;
+        public Driver Owner { get; set; }
+        private  Car _car { get; }
 
         public CarPassport(Car car)
         {

@@ -8,29 +8,42 @@ namespace ClassLibrary1
 {
     public class Driver
     {        
-        private readonly DateTime _licenceData;
-        public readonly string name;        
-        public List<Category> Categories;
+        public DateTime LicenceData { get; }
+        public  string Name { get; }        
+        public List<Category> Categories { get; set; }
         public Driver(string Name,DateTime LicenceTime)
         {
             Categories = new List<Category>();
-            name = Name;
-            _licenceData = LicenceTime;
+            this.Name = Name;
+            LicenceData = LicenceTime;
             
         }
-        DateTime dateNow=DateTime.Now;
-
-        public int Experience
+        DateTime dateNow= DateTime.Now;
+        public int Experience()
         {
-            get {return dateNow.Year-_licenceData.Year;}
+            if (dateNow.Year <= LicenceData.Year)
+            {
+                return 0;
+            }
+            else
+            {                            
+                int n = dateNow.Year - LicenceData.Year;
+                if (LicenceData.DayOfYear > dateNow.DayOfYear)
+                {
+                    --n;                   
+                }               
+                return n;  
+                
+             }
         }
+
 
         public void OwnCar(Car car)
         {
             int i = 0;
-            foreach (var t in Categories)
+            foreach (var t  in Categories)
             {
-                 if (car._category == t)
+                 if (t== car.Category)
                     {
                         Car = car;
                         i++;
@@ -42,9 +55,9 @@ namespace ClassLibrary1
             }
         }
         public Car Car { get; private set; }
+       
     }
-    public enum Category
-        {
-            A, B, C ,D
-        }
+
+    public enum Category { A, B, C ,D }
+   
 }
