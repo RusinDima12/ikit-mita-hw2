@@ -11,15 +11,8 @@ namespace ClassLibrary1
     {        
         public  string Model { get; }
         public  Category Category { get; }
-        public CarPassport CarPassport { get; }
-
-            
-        public enum ColorEnum
-        {
-            Белый, Синий, Желтый, Баклажановый, Черный
-        }
-
-        public ColorEnum Color { get; set; } = ColorEnum.Синий;
+        public CarPassport CarPassport { get; }                    
+        public Color Color { get; set; }
         public string CarNumber{get; private set; }
 
         public void ChangeOwner(Driver driver, string carNumber)
@@ -37,7 +30,7 @@ namespace ClassLibrary1
             }
             else { Category = category; }           
             CarPassport = new CarPassport(this);
-            Color = ColorEnum.Синий;
+            Color = Color.DarkBlue;
 
         }
     }

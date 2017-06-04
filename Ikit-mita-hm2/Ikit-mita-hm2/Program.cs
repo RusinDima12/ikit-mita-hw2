@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,7 +13,7 @@ namespace Ikit_mita_hm2
         static void Main(string[] args)
         {
             Car lada = new Car("Lada", Category.D);
-            lada.Color = Car.ColorEnum.Баклажановый;              
+            lada.Color = Color.DarkMagenta;              
             try
             {                
                  Console.WriteLine(lada.CarPassport.Owner.Name);
