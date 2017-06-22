@@ -5,12 +5,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Drawing;
 
-namespace ClassLibrary1
+namespace ModelLibrary
 {
     public class Car
     {        
         public  string Model { get; }
-        public  Category Category { get; }
+        public enum Category { B=1, C, D, E, F }
+        public Category CarCategory { get; set; }
         public CarPassport CarPassport { get; }                    
         public Color Color { get; set; }
         public string CarNumber{get; private set; }
@@ -24,11 +25,7 @@ namespace ClassLibrary1
         public Car(string model,Category category)
         {
             Model = model;
-            if (category == Category.A)
-            {
-                Console.WriteLine("Авто нельзя присвоить категорию А ");
-            }
-            else { Category = category; }           
+            CarCategory = category;          
             CarPassport = new CarPassport(this);
             Color = Color.DarkBlue;
 

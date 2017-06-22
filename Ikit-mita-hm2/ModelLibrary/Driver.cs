@@ -4,13 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ClassLibrary1
+namespace ModelLibrary
 {
     public class Driver
     {        
         public DateTime LicenceData { get; }
         public  string Name { get; }        
         public List<Category> Categories { get; set; }
+
         public Driver(string Name,DateTime LicenceTime)
         {
             Categories = new List<Category>();
@@ -18,6 +19,7 @@ namespace ClassLibrary1
             LicenceData = LicenceTime;
             
         }
+
         DateTime dateNow= DateTime.Now;
         public int Experience()
         {
@@ -39,25 +41,23 @@ namespace ClassLibrary1
 
 
         public void OwnCar(Car car)
-        {
-            int i = 0;
-            foreach (var t  in Categories)
-            {
-                 if (t== car.Category)
-                    {
-                        Car = car;
-                        i++;
-                    }                             
+        { 
+            
+            if (Categories.Any(u=> u==((Category)car.CarCategory)))
+            {                   
+                Car = car;
             }
-            if (i == 0)
+            else
             {
-                Console.WriteLine("В правах нет категории под эту машину!Машина не назначена");
+                throw new ArgumentException("В правах нет категории под эту машину!Машина не назначена");
             }
         }
         public Car Car { get; private set; }
+
+        public enum Category { A, B, C ,D }
        
     }
 
-    public enum Category { A, B, C ,D }
+    
    
 }

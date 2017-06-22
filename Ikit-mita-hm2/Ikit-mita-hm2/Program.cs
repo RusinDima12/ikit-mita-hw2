@@ -4,7 +4,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using ClassLibrary1;
+using ModelLibrary;
 
 namespace Ikit_mita_hm2
 {
@@ -12,7 +12,8 @@ namespace Ikit_mita_hm2
     {
         static void Main(string[] args)
         {
-            Car lada = new Car("Lada", Category.D);
+            Car lada = new Car("Lada", Car.Category.D);
+           
             lada.Color = Color.DarkMagenta;              
             try
             {                
@@ -24,12 +25,29 @@ namespace Ikit_mita_hm2
                 Console.WriteLine("Водитель не назначен!");
             }                      
             Driver driver1 = new Driver("Вольдемарт",DateTime.Now);
-            driver1.Categories.Add(Category.B);
-            driver1.Categories.Add(Category.C);
+            driver1.Categories.Add(Driver.Category.B);
+            driver1.Categories.Add(Driver.Category.C);
             Console.WriteLine(driver1.Experience());
-            lada.ChangeOwner(driver1,"o777oo");            
-            driver1.Categories.Add(Category.D);
-            lada.ChangeOwner(driver1,"o777oo");
+            try
+            {
+                lada.ChangeOwner(driver1, "o777oo");
+            }
+            catch (ArgumentException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+                      
+            driver1.Categories.Add(Driver.Category.D);
+
+            try
+            {
+                lada.ChangeOwner(driver1,"o777oo");
+            }
+            catch (ArgumentException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            
             Console.WriteLine(driver1.Car.CarNumber);
             Console.WriteLine(lada.CarPassport.Owner.Name);
             Console.ReadKey();
